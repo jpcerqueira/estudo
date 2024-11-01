@@ -1,0 +1,7 @@
+1) Para que serve o for?
+
+O for é usado para criar um loop.
+
+2) Qual a estrutura do for?
+
+O for é uma estrutura de repetição.
