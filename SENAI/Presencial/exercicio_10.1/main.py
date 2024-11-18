@@ -22,27 +22,31 @@ def main():
                 item_menu:int = int(input())
 
                 if item_menu == 1:
-                    os.system('cls') 
-                    item = input('Digite o nome do item: ')
-                    quantidade:int = int(input('Digite a quantidade do item: '))
-                    pedido.adicionar_pedido(item, quantidade)
+                    os.system('cls')
+                    while True:
+                        os.system('cls')
+                        item:str = input('Digite o nome do item: ')
+                        quantidade:int = int(input('Digite a quantidade do item: '))
+                        pedido.adicionar_item(item, quantidade)
+                        mais_item:str = input('Deseja adicionar outro item? (s/n)\n')
+                        if mais_item == 'n':
+                            break
+                    pedido.finalizar_pedido()
 
                 elif item_menu == 2:
                     os.system('cls')
-                    while True:
-                        pedido.mostrar_pedidos()
-                        menu_voltar:int = int(input('0 - Retornar ao menu anterior\n'))
-                        if menu_voltar == 0:
-                            break
+                    pedido.mostrar_todos_pedidos()
+                    input('Pressione Enter para voltar ao menu anterior\n')
 
                 elif item_menu == 3:
                     os.system('cls')
-                    while True:
-                        total = pedido.calcular_total(cardapio)
-                        print(f'Total da conta: R$ {total:.2f}')
-                        menu_voltar:int = int(input('0 - Retornar ao menu anterior\n'))
-                        if menu_voltar == 0:
-                            break
+                    if pedido.pedidos:
+                        indice = int(input(f'Selecione o número do pedido (1 a {len(pedido.pedidos)}): ')) - 1
+                        total:float = pedido.calcular_total_por_indice(indice, cardapio)
+                        print(f'Total do pedido {indice + 1}: R$ {total:.2f}')
+                    else:
+                        print("Nenhum pedido disponível para calcular.")
+                    input('Pressione Enter para voltar ao menu anterior\n')
 
                 elif item_menu == 0:
                     break
@@ -57,7 +61,7 @@ def main():
 
                 if item_menu == 1:
                     os.system('cls') 
-                    nome = input('Digite o nome do item: ')
+                    nome:str = input('Digite o nome do item: ')
                     valor:float = float(input('Digite o valor do item: '))
                     cardapio.adicionar_item(nome, valor)
 
@@ -68,11 +72,8 @@ def main():
 
                 elif item_menu == 3:
                     os.system("cls")
-                    while True:
-                        cardapio.mostrar_cardapio()
-                        menu_voltar = int(input('0 - Retornar ao menu anterior\n'))
-                        if menu_voltar == 0:
-                            break
+                    cardapio.mostrar_cardapio()
+                    input('Pressione Enter para voltar ao menu anterior\n')
 
                 elif item_menu == 0:
                     break
@@ -81,7 +82,6 @@ def main():
             os.system('cls')
             print('Saindo do programa.')
             break
-
 
 if __name__ == '__main__':
     main()
