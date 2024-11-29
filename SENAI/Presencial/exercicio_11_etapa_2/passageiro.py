@@ -11,14 +11,12 @@ class Passageiro:
 
         if not reservas_encontradas:
             print("Nenhuma reserva encontrada para o nome fornecido.")
-            return  # Volta ao menu sem travar o sistema
+            return
 
-        # Mostra as reservas encontradas
         print("Reservas encontradas:")
         for idx, reserva in reservas_encontradas:
             print(f"Índice: {idx} - Cliente: {reserva['cliente'].nome}, Voo: {reserva['voo']['numero']}, Assento: {reserva['assento']}")
 
-        # Seleciona a reserva para alterar
         idx_reserva = int(input("Digite o índice da reserva que deseja alterar: "))
         if idx_reserva not in [idx for idx, _ in reservas_encontradas]:
             print("Índice inválido. Operação cancelada.")
@@ -26,7 +24,6 @@ class Passageiro:
 
         reserva_selecionada = self.reserva.reservas[idx_reserva]
 
-        # Lista os assentos disponíveis
         assentos_ocupados = [res['assento'] for res in self.reserva.reservas if res['voo'] == reserva_selecionada['voo']]
         total_assentos = reserva_selecionada['voo']['aviao'].total_assentos
         assentos_disponiveis = [i for i in range(1, total_assentos + 1) if i not in assentos_ocupados]
@@ -38,7 +35,5 @@ class Passageiro:
             print("Assento inválido ou já ocupado. Operação cancelada.")
             return
 
-        # Realiza a troca de assento
         self.reserva.deletar_reserva(idx_reserva)
         self.reserva.criar_reserva(reserva_selecionada['voo'], reserva_selecionada['cliente'], novo_assento)
-       #print(f"Assento alterado com sucesso para o cliente {reserva_selecionada['cliente'].nome}.")

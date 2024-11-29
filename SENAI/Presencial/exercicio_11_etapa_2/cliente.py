@@ -1,24 +1,34 @@
 class Cliente:
-    def __init__(self, nome=None):
-        self.nome = nome  # Atributo nome do cliente
-        self.clientes = []  # Lista de clientes será inicializada no __init__
+    def __init__(self, nome:str = ''):
+        self.nome = nome
+        self.clientes = []
 
-    def adicionar_cliente(self, nome_cliente):
-        novo_cliente = Cliente(nome_cliente)  # Instanciando um novo cliente
-        self.clientes.append(novo_cliente)  # Adicionando o cliente à lista
-        print(f"Cliente {nome_cliente} adicionado com sucesso!")
+    def adicionar_cliente(self, nome:str):
+        if nome == '':
+            print(f'O nome não pode ser vazio!')
+            return
+        for cliente in self.clientes:
+            if cliente.nome == nome:
+                print(f'Cliente {nome} já existe na lista!')
+                return
+        novo_cliente = Cliente(nome)
+        self.clientes.append(novo_cliente)
+        print(f'Cliente {nome} adicionado com sucesso!')
 
-    def deletar_cliente(self, nome_cliente):
-        # Localizando o índice do cliente pelo nome
-        indice_cliente = next((i for i, cliente in enumerate(self.clientes) if cliente.nome == nome_cliente), None)
-        if indice_cliente is not None:
-            self.clientes.pop(indice_cliente)  # Removendo o cliente pela posição na lista
-            print(f"Cliente {nome_cliente} deletado com sucesso!")
-        else:
-            print(f"Cliente {nome_cliente} não encontrado!")
+    def deletar_cliente(self, nome:str): #ver como não executar função qdo lista tiver vazia, talvez tenha que ser no main
+        if nome == '':
+            print(f'O nome não pode ser vazio!')
+            return
+        for cliente in self.clientes:
+            if cliente.nome == nome:
+                self.clientes.remove(cliente)
+                print(f'Cliente {nome} deletado com sucesso!')
+                return      
+        print(f'Cliente {nome} não encontrado!')
 
     def listar_clientes(self):
         if not self.clientes:
-            print("Nenhum cliente cadastrado.")
-        for i, cliente in enumerate(self.clientes):
-            print(f"{i} - Cliente: {cliente.nome}")
+            print('Nenhum cliente cadastrado.')
+        else:
+            for i, cliente in enumerate(self.clientes):
+                print(f'{i} - Nome: {cliente.nome}') #rever se é necessário indice

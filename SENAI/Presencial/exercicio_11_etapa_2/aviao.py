@@ -4,4 +4,4 @@ class Aviao:
         self.total_assentos = total_assentos
 
     def __str__(self):
-        return f"Avião: {self.identificacao}, Assentos: {self.total_assentos}"
+        return f'Avião: {self.identificacao}, Assentos: {self.total_assentos}'
