@@ -142,6 +142,9 @@ def main():
                             os.system('cls')
                             relatorio.gerar_relatorio(voo.voos[idx_voo])
                             input('Pressione Enter para continuar.')
+                        elif opcao_relatorios == 2: #Gerar ranking dos voos
+                            relatorio.gerar_ranking_voos()
+                            input('Pressione Enter para continuar.')
                         elif opcao_relatorios == 0:  # Retornar ao menu anterior
                             break
 

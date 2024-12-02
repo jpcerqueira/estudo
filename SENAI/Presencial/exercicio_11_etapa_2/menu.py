@@ -52,6 +52,7 @@ class Menu:
     def abrir_menu_relatorios(self):
         print('=== Menu Relatórios ===')
         print('1. Gerar relatório de voo')
+        print('2. Gerar ranking dos voos')
         print('0. Voltar ao menu anterior')
         print('Escolha uma opção:')
 
